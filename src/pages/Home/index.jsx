@@ -1,15 +1,11 @@
 import {Container, Grid} from './style';
 import { useEffect, useState } from 'react';
-import { Oval } from  'react-loader-spinner';
 import {Doughnut, Pie} from 'react-chartjs-2';
 import 'chart.js/auto';
 import { PieChart } from '../../components/PieChart/index';
-
-
-
+import { LoadingEffect } from '../../components/LoadingEffect/index';
 
 export const Home = () => {
-
     const [estados, setEstados] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -31,27 +27,10 @@ export const Home = () => {
         loadApi();        
     }, []);
 
-   
-
-
-
-    
-
     return(
         <Container>
           {loading &&
-           <Oval
-              height={80}
-              width={80}
-              color="#4fa94d"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel='oval-loading'
-              secondaryColor="#4fa94d"
-              strokeWidth={2}
-              strokeWidthSecondary={2}
-            />
+           <LoadingEffect/>
           }
           {!loading &&
             <Grid>
@@ -73,17 +52,3 @@ export const Home = () => {
     );
 }
 
-/*<div style={{width: 300, height: 300}}>
-              <Doughnut 
-                data={{
-                  labels: ['população', 'casos confirmado', 'mortes'],
-                  datasets: [{
-                    label: 'test',
-                    backgroundColor: ['green', 'blue', 'red'],
-                    borderColor: 'black',
-                    borderWidth: 0.5,
-                    data: [estados.estimated_population, estados.confirmed, estados.deaths]
-                  }]
-                }}
-              />
-            </div>*/
